@@ -21,7 +21,7 @@ public class NewtonCooling {
 
         public float  getCoolingTemp(float tempEnv,float tempJacket)
         {
-            double tempForGivenTime = 0,  k =  0.00150 ,  givenTime = 120  ;
+            double tempForGivenTime = 0,  k =  0.00150 ,  givenTime = 1  ;
 
             double tempEnv_k = Degree_To_Kelvin(tempEnv);
 

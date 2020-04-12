@@ -13,6 +13,7 @@ public class Actuator {
         float newtonCoolingValue = newtonCooling.getCoolingTemp(tempEnv,sensorAverage);
         if (userSetTemp<sensorAverage) {
             sensorAverage = sensorAverage - tempChange + newtonCoolingValue;
+//            System.out.println("Temp change:"+tempChange+"Newton Cooling value"new );
         }else if (userSetTemp>sensorAverage) {
             sensorAverage = sensorAverage + tempChange - newtonCoolingValue;
         } else {

@@ -4,12 +4,12 @@ public class Data {
     private static Data dataObj;
     private boolean upperStatus;
     private boolean lowerStatus;
-    private float userSetUpper=55,userSetLower=50;
-    private int timeLimit = 120;
+    private float userSetUpper,userSetLower;
+    private int timeLimit = 100;
     private float lowerLimit = 20;
     private float upperLimit = 40;
-    private float currUpperTemp = 100;
-    private float currLowerTemp = 200;
+    private float currUpperTemp;
+    private float currLowerTemp;
     private float EnvirTemp = 20;
     private float upperSensor1 = 0;
     private float upperSensor2 = 0;
@@ -51,7 +51,7 @@ public class Data {
 	public void setUpperSensor1(float upperSensor1) {
 		this.upperSensor1 = upperSensor1;
 		String value = Float.toString(upperSensor1);
-        TempChangeObserver.getInstance().notifyObserver(3, value);
+        TempChangeObserver.getInstance().notifyObserver(0, value);
 	}
 
 	public float getUpperSensor2() {
@@ -61,7 +61,7 @@ public class Data {
 	public void setUpperSensor2(float upperSensor2) {
 		this.upperSensor2 = upperSensor2;
 		String value = Float.toString(upperSensor2);
-        TempChangeObserver.getInstance().notifyObserver(4, value);
+        TempChangeObserver.getInstance().notifyObserver(1, value);
 	}
 
 	public float getLowerSensor1() {
@@ -71,7 +71,7 @@ public class Data {
 	public void setLowerSensor1(float lowerSensor1) {
 		this.lowerSensor1 = lowerSensor1;
 		String value = Float.toString(lowerSensor1);
-        TempChangeObserver.getInstance().notifyObserver(5, value);
+        TempChangeObserver.getInstance().notifyObserver(2, value);
 	}
 
 	public float getLowerSensor2() {
@@ -81,7 +81,7 @@ public class Data {
 	public void setLowerSensor2(float lowerSensor2) {
 		this.lowerSensor2 = lowerSensor2;
 		String value = Float.toString(lowerSensor1);
-        TempChangeObserver.getInstance().notifyObserver(6, value);
+        TempChangeObserver.getInstance().notifyObserver(3, value);
 	}
 
     public float getUserSetUpper() {
@@ -132,7 +132,7 @@ public class Data {
     public void setCurrUpperTemp(float currUpperTemp) {
     	this.currUpperTemp = currUpperTemp;
     	String value = Float.toString(currUpperTemp);
-        TempChangeObserver.getInstance().notifyObserver(0, value);
+        TempChangeObserver.getInstance().notifyObserver(4, value);
     }
 
     public float getCurrLowerTemp() {
@@ -142,7 +142,7 @@ public class Data {
     public void setCurrLowerTemp(float currLowerTemp) {
         this.currLowerTemp = currLowerTemp;
         String value = Float.toString(currLowerTemp);
-        TempChangeObserver.getInstance().notifyObserver(1, value);
+        TempChangeObserver.getInstance().notifyObserver(5, value);
     }
 
     public float getEnvirTemp() {
@@ -152,7 +152,7 @@ public class Data {
     public void setEnvirTemp(float envirTemp) {
         EnvirTemp = envirTemp;
         String value = Float.toString(envirTemp);
-        TempChangeObserver.getInstance().notifyObserver(2, value);
+        TempChangeObserver.getInstance().notifyObserver(6, value);
     }
     
     

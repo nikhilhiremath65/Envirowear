@@ -35,7 +35,8 @@ public class Frame extends JFrame{
 	
 	public static void main(String[] args) throws InterruptedException{
 		new Frame();
-		new Start();
+		Start start = new Start();
+		start.runApp();
 //		float i = 0;
 //		while(true) {
 //			Data.getInstance().setCurrUpperTemp(i);
