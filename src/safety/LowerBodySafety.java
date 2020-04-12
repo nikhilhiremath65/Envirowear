@@ -1,6 +1,6 @@
 package safety;
 
-import Envirowear.Data;
+import Backend.Data;
 
 public class LowerBodySafety implements Safety{
         private float userSetInput;

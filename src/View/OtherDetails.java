@@ -3,12 +3,11 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Envirowear.TempChangeObserver;
+import Backend.TempChangeObserver;
 
 public class OtherDetails extends JPanel{
 	

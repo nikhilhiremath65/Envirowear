@@ -1,6 +1,4 @@
-package Envirowear;
-
-import org.omg.CORBA.Environment;
+package Backend;
 
 public class NewtonCooling {
 

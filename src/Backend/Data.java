@@ -1,8 +1,4 @@
-package Envirowear;
-
-import Envirowear.TempChangeObserver;
-
-import java.util.Observable;
+package Backend;
 
 public class Data {
     private static Data dataObj;

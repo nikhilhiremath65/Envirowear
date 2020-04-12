@@ -1,7 +1,5 @@
 package safety;
 
-import Envirowear.Data;
-
 public interface Safety {
 
 

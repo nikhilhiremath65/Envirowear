@@ -1,6 +1,6 @@
 package safety;
 
-import Envirowear.Data;
+import Backend.Data;
 
 public class UpperBodySafety implements Safety {
 

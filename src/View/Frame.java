@@ -2,12 +2,10 @@ package View;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
 
-import Envirowear.Data;
-import Envirowear.Start;
+import Backend.Start;
 
 /**
  *  

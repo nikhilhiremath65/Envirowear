@@ -1,7 +1,7 @@
 package Controller;
 
-import Envirowear.Data;
-import Envirowear.Sensor;
+import Backend.Data;
+import Backend.Sensor;
 import safety.UpperBodySafety;
 
 public class UpperBodyController extends Controller{
