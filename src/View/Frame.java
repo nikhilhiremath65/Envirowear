@@ -35,20 +35,7 @@ public class Frame extends JFrame{
 	
 	public static void main(String[] args) throws InterruptedException{
 		new Frame();
-		new Start();
-//		float i = 0;
-//		while(true) {
-//			Data.getInstance().setCurrUpperTemp(i);
-//			Data.getInstance().setCurrLowerTemp(i+1);
-//			Data.getInstance().setEnvirTemp(i+2);
-//			Data.getInstance().setUpperSensor1(i);
-//			Data.getInstance().setUpperSensor2(i+1);
-//			Data.getInstance().setLowerSensor1(i+2);
-//			Data.getInstance().setLowerSensor2(i+3);
-//			TimeUnit.SECONDS.sleep(1);
-//			System.out.println(i);
-//			 i++;
-//		}
+		new Start().runApp();
 		
 	}
 }

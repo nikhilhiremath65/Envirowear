@@ -1,5 +1,7 @@
 package Backend;
 
+import java.util.ArrayList;
+
 public class Data {
     private static Data dataObj;
     private boolean upperStatus;
@@ -15,10 +17,15 @@ public class Data {
     private float upperSensor2 = 0;
     private float lowerSensor1 = 0;
     private float lowerSensor2 = 0;
+    private ArrayList<Double> upperTempList;
+    private ArrayList<Double> lowerTempList;
 
     private Data() {
         this.upperStatus = false;
         this.lowerStatus = false;
+        
+        this.upperTempList = new ArrayList<Double>();
+        this.lowerTempList = new ArrayList<Double>();
     }
 
     public static Data getInstance() {
@@ -51,7 +58,7 @@ public class Data {
 	public void setUpperSensor1(float upperSensor1) {
 		this.upperSensor1 = upperSensor1;
 		String value = Float.toString(upperSensor1);
-        TempChangeObserver.getInstance().notifyObserver(3, value);
+        TempChangeObserver.getInstance().notifyObserver(0, value);
 	}
 
 	public float getUpperSensor2() {
@@ -61,7 +68,7 @@ public class Data {
 	public void setUpperSensor2(float upperSensor2) {
 		this.upperSensor2 = upperSensor2;
 		String value = Float.toString(upperSensor2);
-        TempChangeObserver.getInstance().notifyObserver(4, value);
+        TempChangeObserver.getInstance().notifyObserver(1, value);
 	}
 
 	public float getLowerSensor1() {
@@ -71,7 +78,7 @@ public class Data {
 	public void setLowerSensor1(float lowerSensor1) {
 		this.lowerSensor1 = lowerSensor1;
 		String value = Float.toString(lowerSensor1);
-        TempChangeObserver.getInstance().notifyObserver(5, value);
+        TempChangeObserver.getInstance().notifyObserver(2, value);
 	}
 
 	public float getLowerSensor2() {
@@ -81,7 +88,7 @@ public class Data {
 	public void setLowerSensor2(float lowerSensor2) {
 		this.lowerSensor2 = lowerSensor2;
 		String value = Float.toString(lowerSensor1);
-        TempChangeObserver.getInstance().notifyObserver(6, value);
+        TempChangeObserver.getInstance().notifyObserver(3, value);
 	}
 
     public float getUserSetUpper() {
@@ -132,7 +139,10 @@ public class Data {
     public void setCurrUpperTemp(float currUpperTemp) {
     	this.currUpperTemp = currUpperTemp;
     	String value = Float.toString(currUpperTemp);
-        TempChangeObserver.getInstance().notifyObserver(0, value);
+        TempChangeObserver.getInstance().notifyObserver(4, value);
+        
+        this.upperTempList.add((double) currUpperTemp);
+        TempChangeObserver.getInstance().notifyGraphs(this.upperTempList, true);
     }
 
     public float getCurrLowerTemp() {
@@ -142,7 +152,10 @@ public class Data {
     public void setCurrLowerTemp(float currLowerTemp) {
         this.currLowerTemp = currLowerTemp;
         String value = Float.toString(currLowerTemp);
-        TempChangeObserver.getInstance().notifyObserver(1, value);
+        TempChangeObserver.getInstance().notifyObserver(5, value);
+        
+        this.lowerTempList.add((double) currLowerTemp);
+        TempChangeObserver.getInstance().notifyGraphs(this.lowerTempList, false);
     }
 
     public float getEnvirTemp() {
@@ -152,7 +165,7 @@ public class Data {
     public void setEnvirTemp(float envirTemp) {
         EnvirTemp = envirTemp;
         String value = Float.toString(envirTemp);
-        TempChangeObserver.getInstance().notifyObserver(2, value);
+        TempChangeObserver.getInstance().notifyObserver(6, value);
     }
     
     

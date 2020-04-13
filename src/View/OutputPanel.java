@@ -42,7 +42,8 @@ public class OutputPanel extends JPanel {
 		environmentTempOutput.setEditable(false);
 		TempChangeObserver.getInstance().addObserver(environmentTempOutput);
 		
-		JPanel graphPanel = new GraphPanel();
+		GraphPanel graphPanel = new GraphPanel();
+		TempChangeObserver.getInstance().addGraph(graphPanel);
 		
 		this.add(title);
 		this.add(upperTempLabel);
