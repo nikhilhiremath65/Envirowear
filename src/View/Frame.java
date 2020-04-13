@@ -36,6 +36,5 @@ public class Frame extends JFrame{
 	public static void main(String[] args) throws InterruptedException{
 		new Frame();
 		new Start().runApp();
-		
 	}
 }

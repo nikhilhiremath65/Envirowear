@@ -6,12 +6,12 @@ public class Data {
     private static Data dataObj;
     private boolean upperStatus;
     private boolean lowerStatus;
-    private float userSetUpper=55,userSetLower=50;
-    private int timeLimit = 120;
+    private float userSetUpper,userSetLower;
+    private int timeLimit = 100;
     private float lowerLimit = 20;
     private float upperLimit = 40;
-    private float currUpperTemp = 100;
-    private float currLowerTemp = 200;
+    private float currUpperTemp;
+    private float currLowerTemp;
     private float EnvirTemp = 20;
     private float upperSensor1 = 0;
     private float upperSensor2 = 0;
