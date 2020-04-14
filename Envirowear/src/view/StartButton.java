@@ -47,7 +47,7 @@ public class StartButton extends JButton{
 						if(!data.isUpperStatus() && !data.isLowerStatus()) {
 							data.setUpperStatus(true);
 							data.setLowerStatus(true);
-							//new Start();
+							data.setGraphStatus(true);
 						}
 						data.setUserSetUpper(upperTemp);
 						data.setUserSetLower(lowerTemp);

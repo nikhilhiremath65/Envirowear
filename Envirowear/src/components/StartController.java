@@ -11,6 +11,9 @@ public class StartController {
     private float[] ls2 = {20,20,20,20,20};
     private float[] us1 = {20,20,20,20,20};
     private float[] us2 = {20,20,20,20,20};
+    
+    int upperFalseRound = 0;
+    int lowerFalseRound = 0;
 
     public void setLs1(float[] ls1) {
         this.ls1 = ls1;
@@ -97,17 +100,25 @@ public class StartController {
 
                 round++;
             }
-//            else if(!data.isUpperStatus()){
-//                upperOut = simulation.simulateTempChange(data.getUserSetUpper(), upperSensorAverage,data.getEnvirTemp());
-//                actuatorController.actuatorAction(data.getUserSetLower(), lowerSensorAverage,"UPPER",data.getEnvirTemp());
-//                data.setCurrUpperTemp(upperOut);
-//
-//            }
-//            else if(!data.isLowerStatus()) {
-//                lowerOut = simulation.simulateTempChange(data.getUserSetLower(), lowerSensorAverage,data.getEnvirTemp());
-//                actuatorController.actuatorAction(data.getUserSetLower(), lowerSensorAverage,"LOWER",data.getEnvirTemp());
-//                data.setCurrLowerTemp(lowerOut);
-//            }
+            
+            if(!data.isUpperStatus()){
+            	if(upperFalseRound == 4) {
+            		upperOut = simulation.simulateTempChange(data.getUserSetUpper(), data.getCurrUpperTemp(),data.getEnvirTemp());
+                    actuatorController.actuatorAction(data.getUserSetUpper(), lowerSensorAverage,"UPPER",data.getEnvirTemp());
+                    data.setCurrUpperTemp(upperOut);
+                    upperFalseRound = 0;
+            	}
+            	upperFalseRound++;
+            }
+            if(!data.isLowerStatus()) {
+            	if(lowerFalseRound == 4) {
+            		lowerOut = simulation.simulateTempChange(data.getUserSetLower(), data.getCurrLowerTemp(),data.getEnvirTemp());
+                    actuatorController.actuatorAction(data.getUserSetLower(), lowerSensorAverage,"LOWER",data.getEnvirTemp());
+                    data.setCurrLowerTemp(lowerOut);
+                    lowerFalseRound = 0;
+            	}
+            	lowerFalseRound++;
+            }
         }
     }
 }

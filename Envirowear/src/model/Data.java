@@ -21,7 +21,8 @@ public class Data {
     private float lowerBodySensor1;
     private float lowerBodySensor2;
     
-    private boolean upperControllerStatus;
+    private boolean graphStatus;
+	private boolean upperControllerStatus;
     private boolean lowerControllerStatus;
     
     private ArrayList<Double> upperBodyTempList;
@@ -34,7 +35,7 @@ public class Data {
     	this.lowerTempLimit = 16;
     	this.upperTempLimit = 36;
     	
-    	
+    	this.graphStatus = false;
         this.upperControllerStatus = false;
         this.lowerControllerStatus = false;
         
@@ -86,12 +87,14 @@ public class Data {
 	}
 	
     public void setCurrUpperTemp(float currUpperTemp) {
-    	this.upperBodyTemp = currUpperTemp;
-    	String value = Float.toString(currUpperTemp);
-        TempChangeObserver.getInstance().notifyObserver(4, value);
-        
-        this.upperBodyTempList.add((double) currUpperTemp);
-        TempChangeObserver.getInstance().notifyGraphs(this.upperBodyTempList, true);
+    	if(this.graphStatus) {
+    		this.upperBodyTemp = currUpperTemp;
+        	String value = Float.toString(currUpperTemp);
+            TempChangeObserver.getInstance().notifyObserver(4, value);
+            
+            this.upperBodyTempList.add((double) currUpperTemp);
+            TempChangeObserver.getInstance().notifyGraphs(this.upperBodyTempList, true);
+    	}
     }
 
     public float getCurrLowerTemp() {
@@ -99,12 +102,14 @@ public class Data {
     }
 
     public void setCurrLowerTemp(float currLowerTemp) {
-        this.lowerBodyTemp = currLowerTemp;
-        String value = Float.toString(currLowerTemp);
-        TempChangeObserver.getInstance().notifyObserver(5, value);
-        
-        this.lowerBodyTempList.add((double) currLowerTemp);
-        TempChangeObserver.getInstance().notifyGraphs(this.lowerBodyTempList, false);
+    	if(this.graphStatus) {
+    		this.lowerBodyTemp = currLowerTemp;
+            String value = Float.toString(currLowerTemp);
+            TempChangeObserver.getInstance().notifyObserver(5, value);
+            
+            this.lowerBodyTempList.add((double) currLowerTemp);
+            TempChangeObserver.getInstance().notifyGraphs(this.lowerBodyTempList, false);
+    	}
     }
 
     public float getEnvirTemp() {
@@ -180,5 +185,13 @@ public class Data {
 
 	public float getUpperSensor1() {
 		return upperBodySensor1;
+	}
+	
+	public boolean isGraphStatus() {
+		return graphStatus;
+	}
+
+	public void setGraphStatus(boolean graphStatus) {
+		this.graphStatus = graphStatus;
 	}
 }

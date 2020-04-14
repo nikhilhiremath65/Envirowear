@@ -27,6 +27,8 @@ public class CoolingEquation {
             double tempAfterGivenTime = getTempDec(tempEnv_k , tempCal_k,  k ,  givenTime);
             double tempDec = Kelvin_To_Degree(tempAfterGivenTime);
             
+            System.out.println("temp Dec ------- " + tempDec);
+            
             return (float) tempDec;
         }
     }

@@ -19,12 +19,15 @@ public class Simulation {
     	float updatedTemp = sensorAverage;
         float tempChange = heatingEquation.getTempInc(sensorAverage);
         float newtonCoolingValue = coolingEquation.getCoolingTemp(tempEnv,sensorAverage);
+        System.out.println("+++++++++++");
         updatedTemp = newtonCoolingValue;
-        if (sensorAverage > userSetTemp + 0.5) {
+        if (sensorAverage >= userSetTemp + 0.5) {
         	updatedTemp = sensorAverage - tempChange + newtonCoolingValue;
+        	System.out.println("---------------");
         }
         else if (sensorAverage < userSetTemp - 0.5) {
         	updatedTemp = sensorAverage + tempChange - newtonCoolingValue;
+        	System.out.println("-***************");
         }
 
 
