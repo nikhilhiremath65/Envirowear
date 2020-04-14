@@ -1,11 +1,10 @@
-package controller;
+package components;
 
 
 import java.util.concurrent.TimeUnit;
 
-import controller.LowerBodyController;
-import controller.UpperBodyController;
 import model.Data;
+import model.Simulation;
 
 public class StartController {
     private float[] ls1 = {20,20,20,20,20};
@@ -38,7 +37,8 @@ public class StartController {
         UpperBodyController upperBodyController = new UpperBodyController(data.getUserSetUpper());
         LowerBodyController lowerBodyController = new LowerBodyController(data.getUserSetUpper());
         
-        Actuator actuator = new Actuator();
+        Simulation simulation = new Simulation();
+        ActuatorController actuatorController = new ActuatorController();
         
         while(true) {
             try {
@@ -72,19 +72,19 @@ public class StartController {
                 if (data.isUpperStatus() && upperSensorAverage != -1) {
 
                     upperSensorAverage = upperBodyController.safetyChecks(upperSensorAverage);
-                    upperOut = actuator.doAction(data.getUserSetUpper(), upperSensorAverage, 
-                    		"UPPER",data.getEnvirTemp());
+                    upperOut = simulation.simulateTempChange(data.getUserSetUpper(), upperSensorAverage,data.getEnvirTemp());
+                    actuatorController.actuatorAction(data.getUserSetLower(), lowerSensorAverage,"UPPER",data.getEnvirTemp());
                     data.setCurrUpperTemp(upperOut);
                 }
 
                 if (data.isLowerStatus() && lowerSensorAverage != -1) {
 
                     lowerSensorAverage = lowerBodyController.otherSafetyChecks(lowerSensorAverage);
-                    lowerOut = actuator.doAction(data.getUserSetLower(), lowerSensorAverage, 
-                    		"LOWER",data.getEnvirTemp());
+                    lowerOut = simulation.simulateTempChange(data.getUserSetLower(), lowerSensorAverage,data.getEnvirTemp());
+                    actuatorController.actuatorAction(data.getUserSetLower(), lowerSensorAverage,"LOWER",data.getEnvirTemp());
                     data.setCurrLowerTemp(lowerOut);
                 }
-                
+
                 if (upperSensorAverage != -1 && (data.isLowerStatus() || data.isUpperStatus())) {
                     System.out.println("Upper Controller Status: " + data.isUpperStatus() + 
                     		" Lower Controller Status: " + data.isLowerStatus());
@@ -94,17 +94,20 @@ public class StartController {
                     System.out.println(round);
                 }
 
-                if (data.getUserSetUpper() == upperOut) {
-                    //data.setCurrUpperTemp(upperOut);
-                    data.setUpperStatus(false);
-                }
-                
-                if (data.getUserSetLower() == lowerOut) {
-                    //data.setCurrLowerTemp(lowerOut);
-                    data.setLowerStatus(false);
-                }
+
                 round++;
             }
+//            else if(!data.isUpperStatus()){
+//                upperOut = simulation.simulateTempChange(data.getUserSetUpper(), upperSensorAverage,data.getEnvirTemp());
+//                actuatorController.actuatorAction(data.getUserSetLower(), lowerSensorAverage,"UPPER",data.getEnvirTemp());
+//                data.setCurrUpperTemp(upperOut);
+//
+//            }
+//            else if(!data.isLowerStatus()) {
+//                lowerOut = simulation.simulateTempChange(data.getUserSetLower(), lowerSensorAverage,data.getEnvirTemp());
+//                actuatorController.actuatorAction(data.getUserSetLower(), lowerSensorAverage,"LOWER",data.getEnvirTemp());
+//                data.setCurrLowerTemp(lowerOut);
+//            }
         }
     }
 }

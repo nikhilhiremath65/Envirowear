@@ -1,6 +1,6 @@
 package view;
 
-import controller.StartController;
+import components.StartController;
 
 /**
  * This is the driver class that starts the complete application.

@@ -1,8 +1,8 @@
-package model;
+package components;
 
 import model.Data;
 
-public class LowerBodySafety implements SafetyInterface{
+public class Safety implements SafetyInterface {
 	
 	private int nullCount;
     private int limitCount;
@@ -11,22 +11,24 @@ public class LowerBodySafety implements SafetyInterface{
 	private float userSetInput;
     private float upperTempLimit;
     private float lowerTempLimit;
+    private String controllerType;
 
-    public LowerBodySafety() {
+    public Safety(String controllerType) {
         this.nullCount = 0;
         this.limitCount = 0;
+        this.controllerType = controllerType;
     }
 
     public boolean checkUserSetTemp(){
     	
-    		Data data = Data.getInstance(); 
+    		Data data = Data.getInstance();
             upperTempLimit = data.getUpperLimit();
             lowerTempLimit = data.getLowerLimit();
             userSetInput = data.getUserSetLower();
             return lowerTempLimit <= userSetInput && userSetInput <= upperTempLimit;
-        }
+    }
 
-        public float checkSensorNullTemp(float sensorTemp){
+    public float checkSensorNullTemp(float sensorTemp){
         	
         	Data data = Data.getInstance(); 
             timeLimit = data.getTimeLimit();
@@ -43,12 +45,15 @@ public class LowerBodySafety implements SafetyInterface{
             }
 
             else{
-                data.setLowerStatus(false);
+                if(controllerType.equals("LOWER"))
+                    data.setLowerStatus(false);
+                else if(controllerType.equals("UPPER"))
+                    data.setUpperStatus(false);
             }
             return sensorTemp;
-        }
+    }
 
-        public float checkAverageTempLimit(float sensorTemp){
+    public float checkAverageTempLimit(float sensorTemp){
         	
         	Data data = Data.getInstance(); 
             int timeLimit = data.getTimeLimit();
@@ -69,9 +74,12 @@ public class LowerBodySafety implements SafetyInterface{
                 }
             }
             else{
-                data.setLowerStatus(false); // stop the whole device
+                if(controllerType.equals("LOWER"))
+                    data.setLowerStatus(false);
+                else if(controllerType.equals("UPPER"))
+                    data.setUpperStatus(false);
 
             }
             return sensorTemp;
-        }
+    }
 }
