@@ -7,10 +7,10 @@ public class Safety implements SafetyInterface {
 	private int nullCount;
     private int limitCount;
 	
-	private float timeLimit;
-	private float userSetInput;
-    private float upperTempLimit;
-    private float lowerTempLimit;
+	private double timeLimit;
+	private double userSetInput;
+    private double upperTempLimit;
+    private double lowerTempLimit;
     private String controllerType;
 
     public Safety(String controllerType) {
@@ -28,7 +28,7 @@ public class Safety implements SafetyInterface {
             return lowerTempLimit <= userSetInput && userSetInput <= upperTempLimit;
     }
 
-    public float checkSensorNullTemp(float sensorTemp){
+    public double checkSensorNullTemp(double sensorTemp){
         	
         	Data data = Data.getInstance(); 
             timeLimit = data.getTimeLimit();
@@ -53,12 +53,12 @@ public class Safety implements SafetyInterface {
             return sensorTemp;
     }
 
-    public float checkAverageTempLimit(float sensorTemp){
+    public double checkAverageTempLimit(double sensorTemp){
         	
         	Data data = Data.getInstance(); 
             int timeLimit = data.getTimeLimit();
-            float upperTempLimit = data.getUpperLimit();
-            float lowerTempLimit = data.getLowerLimit();
+            double upperTempLimit = data.getUpperLimit();
+            double lowerTempLimit = data.getLowerLimit();
             if(limitCount <= timeLimit){
                 if(sensorTemp > upperTempLimit){
                     sensorTemp = upperTempLimit;

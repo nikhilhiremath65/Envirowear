@@ -9,17 +9,17 @@ public class Data {
     
     private int timeOut;
     
-    private float envTemp;
-    private float userSetUTemp;
-    private float userSetLTemp;
-    private float upperBodyTemp;
-    private float lowerBodyTemp;
-    private float lowerTempLimit;
-    private float upperTempLimit;
-    private float upperBodySensor1;
-    private float upperBodySensor2;
-    private float lowerBodySensor1;
-    private float lowerBodySensor2;
+    private double envTemp;
+    private double userSetUTemp;
+    private double userSetLTemp;
+    private double upperBodyTemp;
+    private double lowerBodyTemp;
+    private double lowerTempLimit;
+    private double upperTempLimit;
+    private double upperBodySensor1;
+    private double upperBodySensor2;
+    private double lowerBodySensor1;
+    private double lowerBodySensor2;
     
     private boolean graphStatus;
 	private boolean upperControllerStatus;
@@ -50,46 +50,46 @@ public class Data {
         return dataObj;
     }
     
-	public void setUpperSensor1(float upperSensor1) {
+	public void setUpperSensor1(double upperSensor1) {
 		this.upperBodySensor1 = upperSensor1;
-		String value = Float.toString(upperSensor1);
+		String value = Double.toString(upperSensor1);
         TempChangeObserver.getInstance().notifyObserver(0, value);
 	}
 
-	public float getUpperSensor2() {
+	public double getUpperSensor2() {
 		return upperBodySensor2;
 	}
 
-	public void setUpperSensor2(float upperSensor2) {
+	public void setUpperSensor2(double upperSensor2) {
 		this.upperBodySensor2 = upperSensor2;
-		String value = Float.toString(upperSensor2);
+		String value = Double.toString(upperSensor2);
         TempChangeObserver.getInstance().notifyObserver(1, value);
 	}
 
-	public float getLowerSensor1() {
+	public double getLowerSensor1() {
 		return lowerBodySensor1;
 	}
 
-	public void setLowerSensor1(float lowerSensor1) {
+	public void setLowerSensor1(double lowerSensor1) {
 		this.lowerBodySensor1 = lowerSensor1;
-		String value = Float.toString(lowerSensor1);
+		String value = Double.toString(lowerSensor1);
         TempChangeObserver.getInstance().notifyObserver(2, value);
 	}
 
-	public float getLowerSensor2() {
+	public double getLowerSensor2() {
 		return lowerBodySensor2;
 	}
 
-	public void setLowerSensor2(float lowerSensor2) {
+	public void setLowerSensor2(double lowerSensor2) {
 		this.lowerBodySensor2 = lowerSensor2;
-		String value = Float.toString(lowerBodySensor1);
+		String value = Double.toString(lowerBodySensor1);
         TempChangeObserver.getInstance().notifyObserver(3, value);
 	}
 	
-    public void setCurrUpperTemp(float currUpperTemp) {
+    public void setCurrUpperTemp(double currUpperTemp) {
     	if(this.graphStatus) {
     		this.upperBodyTemp = currUpperTemp;
-        	String value = Float.toString(currUpperTemp);
+        	String value = Double.toString(currUpperTemp);
             TempChangeObserver.getInstance().notifyObserver(4, value);
             
             this.upperBodyTempList.add((double) currUpperTemp);
@@ -97,14 +97,14 @@ public class Data {
     	}
     }
 
-    public float getCurrLowerTemp() {
+    public double getCurrLowerTemp() {
         return lowerBodyTemp;
     }
 
-    public void setCurrLowerTemp(float currLowerTemp) {
+    public void setCurrLowerTemp(double currLowerTemp) {
     	if(this.graphStatus) {
     		this.lowerBodyTemp = currLowerTemp;
-            String value = Float.toString(currLowerTemp);
+            String value = Double.toString(currLowerTemp);
             TempChangeObserver.getInstance().notifyObserver(5, value);
             
             this.lowerBodyTempList.add((double) currLowerTemp);
@@ -112,30 +112,30 @@ public class Data {
     	}
     }
 
-    public float getEnvirTemp() {
+    public double getEnvirTemp() {
         return envTemp;
     }
 
-    public void setEnvirTemp(float envirTemp) {
+    public void setEnvirTemp(Double envirTemp) {
         envTemp = envirTemp;
-        String value = Float.toString(envirTemp);
+        String value = Double.toString(envirTemp);
         TempChangeObserver.getInstance().notifyObserver(6, value);
     }
 
-    public float getUserSetUpper() {
+    public double getUserSetUpper() {
         return userSetUTemp;
 
     }
 
-    public void setUserSetUpper(float userSetUpper) {
+    public void setUserSetUpper(Double userSetUpper) {
         this.userSetUTemp = userSetUpper;
     }
 
-    public float getUserSetLower() {
+    public double getUserSetLower() {
         return userSetLTemp;
     }
 
-    public void setUserSetLower(float userSetLower) {
+    public void setUserSetLower(Double userSetLower) {
         this.userSetLTemp = userSetLower;
     }
 
@@ -147,23 +147,23 @@ public class Data {
         this.timeOut = timeLimit;
     }
 
-    public float getLowerLimit() {
+    public double getLowerLimit() {
         return lowerTempLimit;
     }
 
-    public void setLowerLimit(float lowerLimit) {
+    public void setLowerLimit(Double lowerLimit) {
         this.lowerTempLimit = lowerLimit;
     }
 
-    public float getUpperLimit() {
+    public double getUpperLimit() {
         return upperTempLimit;
     }
 
-    public void setUpperLimit(float upperLimit) {
+    public void setUpperLimit(Double upperLimit) {
         this.upperTempLimit = upperLimit;
     }
 
-    public float getCurrUpperTemp() {
+    public double getCurrUpperTemp() {
         return upperBodyTemp;
     }   
     
@@ -183,7 +183,7 @@ public class Data {
 		this.lowerControllerStatus = lowerStatus;
 	}
 
-	public float getUpperSensor1() {
+	public double getUpperSensor1() {
 		return upperBodySensor1;
 	}
 	

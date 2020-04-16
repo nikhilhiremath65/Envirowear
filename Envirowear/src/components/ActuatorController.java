@@ -13,17 +13,17 @@ public class ActuatorController {
 //       coolingEquation = new CoolingEquation();
     }
 
-    public String  actuatorAction(float userSetTemp, float sensorAverage, String actuatorType, float tempEnv){
+    public String  actuatorAction(double userSetTemp, double sensorAverage, String actuatorType, double tempEnv){
 
         String action = "NONE";
-//        float tempChange = heatingEquation.getTempInc(sensorAverage);
-//        float newtonCoolingValue = coolingEquation.getCoolingTemp(tempEnv,sensorAverage);
-        if (sensorAverage > userSetTemp + 0.5) {
-            System.out.println("cool");
+//        double tempChange = heatingEquation.getTempInc(sensorAverage);
+//        double newtonCoolingValue = coolingEquation.getCoolingTemp(tempEnv,sensorAverage);
+        if (sensorAverage > (userSetTemp + 0.5)) {
+            System.out.println("cool "+userSetTemp+" "+sensorAverage);
             action = "COOL";
         }
-        else if (sensorAverage < userSetTemp - 0.5) {
-            System.out.println("heat");
+        else if (sensorAverage < (userSetTemp - 0.5)) {
+            System.out.println("heat "+userSetTemp+" "+sensorAverage);
             action = "HEAT";
 
         }

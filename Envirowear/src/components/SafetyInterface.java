@@ -3,6 +3,6 @@ package components;
 public interface SafetyInterface {
 
     boolean checkUserSetTemp();
-    float checkSensorNullTemp(float sensorTemp);
-    float checkAverageTempLimit(float sensorTemp);
+    double checkSensorNullTemp(double sensorTemp);
+    double checkAverageTempLimit(double sensorTemp);
 }

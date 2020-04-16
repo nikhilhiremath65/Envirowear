@@ -2,8 +2,9 @@ package components;
 
 public class  Controller{
 	
-    private float userSetInput;
-    private float avgSen1=0,avgSen2=0;
+    private double userSetInput;
+    private double avgSen1=0;
+    private double avgSen2=0;
     private int count = 0;
 
     Sensor sensor1;
@@ -12,13 +13,13 @@ public class  Controller{
     Safety safety;
 
 
-    public Controller(float userSetInput){
+    public Controller(double userSetInput){
     	average = new Average();
         this.userSetInput = userSetInput;
     }
 
-    public float calcSensorAverage(){
-        float result = -1;
+    public double calcSensorAverage(){
+        double result = -1;
         count++;
         avgSen1+= sensor1.getTemp();
         avgSen2+= sensor2.getTemp();

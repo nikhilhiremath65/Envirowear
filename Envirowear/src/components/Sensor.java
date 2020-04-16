@@ -2,16 +2,16 @@ package components;
 
 public class Sensor {
 
-    private float temp;
+    private double temp;
 
-    public Sensor(float temp){
+    public Sensor(double temp){
         this.temp = temp;
     }
-    public float getTemp() {
+    public double getTemp() {
         return temp;
     }
 
-    public void setTemp(float temp) {
+    public void setTemp(double temp) {
 
         this.temp = temp;
     }

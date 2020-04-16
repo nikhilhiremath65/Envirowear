@@ -4,7 +4,7 @@ import model.Data;
 
 public class LowerBodyController extends Controller {
 
-    public LowerBodyController(float userSetInput){
+    public LowerBodyController(double userSetInput){
     	
         super(userSetInput);
         safety = new Safety("LOWER");
@@ -20,13 +20,13 @@ public class LowerBodyController extends Controller {
     }
 
 
-    public float otherSafetyChecks(float sensorAverage) {
+    public double otherSafetyChecks(double sensorAverage) {
     	
         safety.checkUserSetTemp();
         return safety.checkAverageTempLimit(sensorAverage);
     }
 
-    public void setSensorTemp(float v, float v1) {
+    public void setSensorTemp(double v, double v1) {
     	
         sensor1.setTemp(v);
         sensor2.setTemp(v1);

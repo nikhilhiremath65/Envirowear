@@ -6,7 +6,7 @@ public class UpperBodyController extends Controller{
 
 
 
-    public UpperBodyController(float userSetInput){
+    public UpperBodyController(double userSetInput){
         super(userSetInput);
         safety = new Safety("UPPER");
         sensor1 = new Sensor(24);
@@ -21,13 +21,13 @@ public class UpperBodyController extends Controller{
     }
 
 
-    public float safetyChecks(float sensorAverage) {
+    public double safetyChecks(double sensorAverage) {
         safety.checkUserSetTemp();
         return safety.checkAverageTempLimit(sensorAverage);
     }
 
 
-    public void setSensorTemp(float v, float v1) {
+    public void setSensorTemp(double v, double v1) {
         sensor1.setTemp(v);
         sensor2.setTemp(v1);
         this.updateData();

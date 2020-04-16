@@ -35,8 +35,8 @@ public class StartButton extends JButton{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Data data = Data.getInstance();
-					float upperTemp = Float.parseFloat(upperBody.getText().replace(" ", ""));
-					float lowerTemp = Float.parseFloat(lowerBody.getText().replace(" ", ""));
+					double upperTemp = Double.parseDouble(upperBody.getText().replace(" ", ""));
+					double lowerTemp = Double.parseDouble(lowerBody.getText().replace(" ", ""));
 					
 					if (upperTemp < data.getLowerLimit() || upperTemp > data.getUpperLimit() || 
 							lowerTemp < data.getLowerLimit() || lowerTemp > data.getUpperLimit()) {
