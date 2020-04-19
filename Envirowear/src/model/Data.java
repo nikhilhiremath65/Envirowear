@@ -7,15 +7,13 @@ import view.TempChangeObserver;
 public class Data {
     private static Data dataObj;
     
-    private int timeOut;
-    
+
     private double envTemp;
     private double userSetUTemp;
     private double userSetLTemp;
     private double upperBodyTemp;
     private double lowerBodyTemp;
-    private double lowerTempLimit;
-    private double upperTempLimit;
+
     private double upperBodySensor1;
     private double upperBodySensor2;
     private double lowerBodySensor1;
@@ -29,11 +27,9 @@ public class Data {
     private ArrayList<Double> lowerBodyTempList;
 
     private Data() {
-    	this.timeOut = 100;
-    	
-    	this.envTemp = 20;
-    	this.lowerTempLimit = 16;
-    	this.upperTempLimit = 36;
+
+    	this.envTemp = 25;
+
     	
     	this.graphStatus = false;
         this.upperControllerStatus = false;
@@ -139,29 +135,6 @@ public class Data {
         this.userSetLTemp = userSetLower;
     }
 
-    public int getTimeLimit() {
-        return timeOut;
-    }
-
-    public void setTimeLimit(int timeLimit) {
-        this.timeOut = timeLimit;
-    }
-
-    public double getLowerLimit() {
-        return lowerTempLimit;
-    }
-
-    public void setLowerLimit(Double lowerLimit) {
-        this.lowerTempLimit = lowerLimit;
-    }
-
-    public double getUpperLimit() {
-        return upperTempLimit;
-    }
-
-    public void setUpperLimit(Double upperLimit) {
-        this.upperTempLimit = upperLimit;
-    }
 
     public double getCurrUpperTemp() {
         return upperBodyTemp;

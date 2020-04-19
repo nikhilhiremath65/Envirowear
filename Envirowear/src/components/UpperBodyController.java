@@ -9,11 +9,12 @@ public class UpperBodyController extends Controller{
     public UpperBodyController(double userSetInput){
         super(userSetInput);
         safety = new Safety("UPPER");
+        otherSafetyChecks = new OtherSafetyChecks("UPPER");
         sensor1 = new Sensor(24);
         sensor2 = new Sensor(24);
     }
 
-    public void safetyCheckSensor(){
+    public void safetyCheckSensor() throws Exception{
 
         sensor1.setTemp(safety.checkSensorNullTemp(sensor1.getTemp()));
         sensor2.setTemp(safety.checkSensorNullTemp(sensor2.getTemp()));
@@ -21,9 +22,9 @@ public class UpperBodyController extends Controller{
     }
 
 
-    public double safetyChecks(double sensorAverage) {
+    public double safetyChecks(double sensorAverage) throws Exception{
         safety.checkUserSetTemp();
-        return safety.checkAverageTempLimit(sensorAverage);
+        return otherSafetyChecks.checkAverageTempLimit(sensorAverage);
     }
 
 

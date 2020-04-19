@@ -2,7 +2,6 @@ package components;
 
 public interface SafetyInterface {
 
-    boolean checkUserSetTemp();
-    double checkSensorNullTemp(double sensorTemp);
-    double checkAverageTempLimit(double sensorTemp);
+    boolean checkUserSetTemp() throws  Exception;
+    double checkSensorNullTemp(double sensorTemp) throws Exception;
 }

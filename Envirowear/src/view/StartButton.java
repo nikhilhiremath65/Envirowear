@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import model.Constants;
 import model.Data;
 
 /**
@@ -20,7 +21,9 @@ import model.Data;
  */
 
 public class StartButton extends JButton{
-	
+
+	private double lowerLimit = Constants.LOWER_TEMP_LIMIT;
+	private double upperLimit = Constants.UPPER_TEMP_LIMIT;
 	public StartButton(JTextField upperBody, JTextField lowerBody){
 		
 		super("Start");
@@ -38,8 +41,8 @@ public class StartButton extends JButton{
 					double upperTemp = Double.parseDouble(upperBody.getText().replace(" ", ""));
 					double lowerTemp = Double.parseDouble(lowerBody.getText().replace(" ", ""));
 					
-					if (upperTemp < data.getLowerLimit() || upperTemp > data.getUpperLimit() || 
-							lowerTemp < data.getLowerLimit() || lowerTemp > data.getUpperLimit()) {
+					if (upperTemp < lowerLimit || upperTemp > upperLimit ||
+							lowerTemp < lowerLimit || lowerTemp > upperLimit) {
 						String message = "Please enter temperature between 20 and 40";
 						JOptionPane.showMessageDialog(getParent().getParent(), message);
 					}
