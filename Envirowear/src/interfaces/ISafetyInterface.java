@@ -1,6 +1,6 @@
-package components;
+package interfaces;
 
-public interface SafetyInterface {
+public interface ISafetyInterface {
 
     boolean checkUserSetTemp() throws  Exception;
     double checkSensorNullTemp(double sensorTemp) throws Exception;

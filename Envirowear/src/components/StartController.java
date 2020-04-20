@@ -1,42 +1,28 @@
 package components;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import interfaces.IActuatorController;
+import interfaces.IController;
 import model.Constants;
 import model.Data;
 import model.Simulator;
 
 public class StartController {
-    private double[] ls1 = {16, 16, 16};
-    private double[] ls2 = {16, 16, 16};
-    private double[] us1 = {35, 35, 35};
-    private double[] us2 = {35, 35, 35};
+    ArrayList ls1,ls2,us1,us2;
 
     int upperFalseRound = 0;
     int lowerFalseRound = 0;
 
 
     Simulator simulator;
-    UpperBodyController upperBodyController;
-    LowerBodyController lowerBodyController;
-    ActuatorController actuatorController;
+    IController upperBodyController;
+    IController lowerBodyController;
+    IActuatorController actuatorController;
 
-    public void setLs1(double[] ls1) {
-        this.ls1 = ls1;
-    }
-
-    public void setLs2(double[] ls2) {
-        this.ls2 = ls2;
-    }
-
-    public void setUs1(double[] us1) {
-        this.us1 = us1;
-    }
-
-    public void setUs2(double[] us2) {
-        this.us2 = us2;
-    }
 
     public void start() {
         try {
@@ -46,6 +32,10 @@ public class StartController {
 
             upperBodyController = new UpperBodyController(data.getUserSetUpper());
             lowerBodyController = new LowerBodyController(data.getUserSetLower());
+            ls1 = new ArrayList();
+            ls2 = new ArrayList();
+            us1 = new ArrayList();
+            us2 = new ArrayList();
 
             simulator = new Simulator();
             actuatorController = new ActuatorController();
@@ -58,20 +48,26 @@ public class StartController {
                 }
 
                 if (data.isUpperStatus() || data.isLowerStatus()) {
+                    if(ls1.isEmpty()){
+                        ls1 = data.getLowerSensor1();
+                        ls2 = data.getLowerSensor2();
+                        us1 = data.getUpperSensor1();
+                        us2 = data.getUpperSensor2();
+                    }
 
                     if (data.isUpperStatus()) {
                         if (round < Constants.COUNTER)
-                            upperBodyController.setSensorTemp(us1[round], us2[round]);
+                            upperBodyController.setSensorTemp((double) us1.get(round), (double) us2.get(round));
                         else
                             upperBodyController.setSensorTemp(upperOut, upperOut);
 
-                        upperBodyController.safetyCheckSensor();
+                        upperBodyController.sensorSafetyCheck();
                         upperSensorAverage = upperBodyController.calcSensorAverage();
                     }
 
                     if (data.isLowerStatus()) {
                         if (round < Constants.COUNTER)
-                            lowerBodyController.setSensorTemp(ls1[round], ls2[round]);
+                            lowerBodyController.setSensorTemp((double)ls1.get(round),(double) ls2.get(round));
                         else
                             lowerBodyController.setSensorTemp(lowerOut, lowerOut);
 
@@ -81,17 +77,17 @@ public class StartController {
 
                     if (data.isUpperStatus() && upperSensorAverage != -1) {
 
-                        upperSensorAverage = upperBodyController.safetyChecks(upperSensorAverage);
-                        upperOut = simulator.simulateTempChange(data.getUserSetUpper(), upperSensorAverage, data.getEnvirTemp());
-                        actuatorController.actuatorAction(data.getUserSetUpper(), upperSensorAverage, "UPPER", data.getEnvirTemp());
+                        upperSensorAverage = upperBodyController.otherSafetyChecks(upperSensorAverage);
+                        upperOut = simulator.simulateTempChange(data.getUserSetUpper(), upperSensorAverage, data.getEnvTemp());
+                        actuatorController.actuatorAction(data.getUserSetUpper(), upperSensorAverage, "UPPER", data.getEnvTemp());
                         data.setCurrUpperTemp(upperOut);
                     }
 
                     if (data.isLowerStatus() && lowerSensorAverage != -1) {
 
                         lowerSensorAverage = lowerBodyController.otherSafetyChecks(lowerSensorAverage);
-                        lowerOut = simulator.simulateTempChange(data.getUserSetLower(), lowerSensorAverage, data.getEnvirTemp());
-                        actuatorController.actuatorAction(data.getUserSetLower(), lowerSensorAverage, "LOWER", data.getEnvirTemp());
+                        lowerOut = simulator.simulateTempChange(data.getUserSetLower(), lowerSensorAverage, data.getEnvTemp());
+                        actuatorController.actuatorAction(data.getUserSetLower(), lowerSensorAverage, "LOWER", data.getEnvTemp());
                         data.setCurrLowerTemp(lowerOut);
                     }
 
@@ -110,8 +106,8 @@ public class StartController {
 
                 if (!data.isUpperStatus()) {
                     if (upperFalseRound == Constants.COUNTER - 1) {
-                        upperOut = simulator.simulateTempChange(data.getUserSetUpper(), data.getCurrUpperTemp(), data.getEnvirTemp());
-                        actuatorController.actuatorAction(data.getUserSetUpper(), upperSensorAverage, "UPPER", data.getEnvirTemp());
+                        upperOut = simulator.simulateTempChange(data.getUserSetUpper(), data.getCurrUpperTemp(), data.getEnvTemp());
+                        actuatorController.actuatorAction(data.getUserSetUpper(), upperSensorAverage, "UPPER", data.getEnvTemp());
                         data.setCurrUpperTemp(upperOut);
                         upperFalseRound = 0;
                     }
@@ -119,8 +115,8 @@ public class StartController {
                 }
                 if (!data.isLowerStatus()) {
                     if (lowerFalseRound == Constants.COUNTER - 1) {
-                        lowerOut = simulator.simulateTempChange(data.getUserSetLower(), data.getCurrLowerTemp(), data.getEnvirTemp());
-                        actuatorController.actuatorAction(data.getUserSetLower(), lowerSensorAverage, "LOWER", data.getEnvirTemp());
+                        lowerOut = simulator.simulateTempChange(data.getUserSetLower(), data.getCurrLowerTemp(), data.getEnvTemp());
+                        actuatorController.actuatorAction(data.getUserSetLower(), lowerSensorAverage, "LOWER", data.getEnvTemp());
                         data.setCurrLowerTemp(lowerOut);
                         lowerFalseRound = 0;
                     }

@@ -1,8 +1,9 @@
 package components;
 
+import interfaces.IController;
 import model.Constants;
 
-public class  Controller {
+public abstract class  Controller implements IController {
 	
     private double userSetInput;
     private double avgSen1=0;
@@ -36,5 +37,6 @@ public class  Controller {
         }
         return result;
     }
+
 
 }

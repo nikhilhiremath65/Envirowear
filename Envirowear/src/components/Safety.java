@@ -1,9 +1,10 @@
 package components;
 
+import interfaces.ISafetyInterface;
 import model.Constants;
 import model.Data;
 
-public class Safety implements SafetyInterface {
+public class Safety implements ISafetyInterface {
 	
 	private int nullCount;
 

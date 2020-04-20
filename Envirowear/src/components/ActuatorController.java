@@ -1,8 +1,9 @@
 package components;
 
+import interfaces.IActuatorController;
 import model.Data;
 
-public class ActuatorController {
+public class ActuatorController implements IActuatorController {
 
 
 

@@ -6,37 +6,44 @@ import view.TempChangeObserver;
 
 public class Data {
     private static Data dataObj;
-    
 
+
+    private double tBR;
     private double envTemp;
+
     private double userSetUTemp;
     private double userSetLTemp;
     private double upperBodyTemp;
     private double lowerBodyTemp;
 
-    private double upperBodySensor1;
-    private double upperBodySensor2;
-    private double lowerBodySensor1;
-    private double lowerBodySensor2;
-    
+    private ArrayList<Double> upperBodySensor1List;
+    private ArrayList<Double> upperBodySensor2List;
+    private ArrayList<Double> lowerBodySensor1List;
+    private ArrayList<Double> lowerBodySensor2List;
+
+
+
     private boolean graphStatus;
-	private boolean upperControllerStatus;
+    private boolean upperControllerStatus;
     private boolean lowerControllerStatus;
-    
+
     private ArrayList<Double> upperBodyTempList;
     private ArrayList<Double> lowerBodyTempList;
 
     private Data() {
 
-    	this.envTemp = 25;
 
-    	
-    	this.graphStatus = false;
+        this.tBR = 0;
+
+
+        this.graphStatus = false;
+        this.envTemp = 20;
+
         this.upperControllerStatus = false;
         this.lowerControllerStatus = false;
-        
+
         this.upperBodyTempList = new ArrayList<Double>();
-        this.lowerBodyTempList = new ArrayList<Double>();    
+        this.lowerBodyTempList = new ArrayList<Double>();
     }
 
     public static Data getInstance() {
@@ -45,52 +52,53 @@ public class Data {
         }
         return dataObj;
     }
-    
-	public void setUpperSensor1(double upperSensor1) {
-		this.upperBodySensor1 = upperSensor1;
-		String value = Double.toString(upperSensor1);
-        TempChangeObserver.getInstance().notifyObserver(0, value);
-	}
 
-	public double getUpperSensor2() {
-		return upperBodySensor2;
-	}
 
-	public void setUpperSensor2(double upperSensor2) {
-		this.upperBodySensor2 = upperSensor2;
-		String value = Double.toString(upperSensor2);
-        TempChangeObserver.getInstance().notifyObserver(1, value);
-	}
+    public double getEnvTemp() {
+        return envTemp;
+    }
 
-	public double getLowerSensor1() {
-		return lowerBodySensor1;
-	}
+    public void setEnvTemp(double envTemp) {
+        this.envTemp = envTemp;
+    }
 
-	public void setLowerSensor1(double lowerSensor1) {
-		this.lowerBodySensor1 = lowerSensor1;
-		String value = Double.toString(lowerSensor1);
-        TempChangeObserver.getInstance().notifyObserver(2, value);
-	}
+    public void setUpperSensor1(ArrayList<Double> upperSensor1) {
+        this.upperBodySensor1List = upperSensor1;
+    }
 
-	public double getLowerSensor2() {
-		return lowerBodySensor2;
-	}
+    public ArrayList<Double> getUpperSensor2() {
+        return upperBodySensor2List;
+    }
 
-	public void setLowerSensor2(double lowerSensor2) {
-		this.lowerBodySensor2 = lowerSensor2;
-		String value = Double.toString(lowerBodySensor1);
-        TempChangeObserver.getInstance().notifyObserver(3, value);
-	}
-	
+    public void setUpperSensor2(ArrayList<Double> upperSensor2) {
+        this.upperBodySensor2List = upperSensor2;
+    }
+
+    public ArrayList<Double> getLowerSensor1() {
+        return lowerBodySensor1List;
+    }
+
+    public void setLowerSensor1(ArrayList<Double> lowerSensor1) {
+        this.lowerBodySensor1List = lowerSensor1;
+    }
+
+    public ArrayList<Double> getLowerSensor2() {
+        return lowerBodySensor2List;
+    }
+
+    public void setLowerSensor2(ArrayList<Double> lowerSensor2) {
+        this.lowerBodySensor2List = lowerSensor2;
+    }
+
     public void setCurrUpperTemp(double currUpperTemp) {
-    	if(this.graphStatus) {
-    		this.upperBodyTemp = currUpperTemp;
-        	String value = Double.toString(currUpperTemp);
-            TempChangeObserver.getInstance().notifyObserver(4, value);
-            
+        if(this.graphStatus) {
+            this.upperBodyTemp = currUpperTemp;
+            String value = Double.toString(currUpperTemp);
+            TempChangeObserver.getInstance().notifyObserver(0, value);
+
             this.upperBodyTempList.add((double) currUpperTemp);
             TempChangeObserver.getInstance().notifyGraphs(this.upperBodyTempList, true);
-    	}
+        }
     }
 
     public double getCurrLowerTemp() {
@@ -98,32 +106,23 @@ public class Data {
     }
 
     public void setCurrLowerTemp(double currLowerTemp) {
-    	if(this.graphStatus) {
-    		this.lowerBodyTemp = currLowerTemp;
+        if(this.graphStatus) {
+            this.lowerBodyTemp = currLowerTemp;
             String value = Double.toString(currLowerTemp);
-            TempChangeObserver.getInstance().notifyObserver(5, value);
-            
+            TempChangeObserver.getInstance().notifyObserver(1, value);
+
             this.lowerBodyTempList.add((double) currLowerTemp);
             TempChangeObserver.getInstance().notifyGraphs(this.lowerBodyTempList, false);
-    	}
+        }
     }
 
-    public double getEnvirTemp() {
-        return envTemp;
-    }
-
-    public void setEnvirTemp(Double envirTemp) {
-        envTemp = envirTemp;
-        String value = Double.toString(envirTemp);
-        TempChangeObserver.getInstance().notifyObserver(6, value);
-    }
 
     public double getUserSetUpper() {
         return userSetUTemp;
 
     }
 
-    public void setUserSetUpper(Double userSetUpper) {
+    public void setUserSetUpper(double userSetUpper) {
         this.userSetUTemp = userSetUpper;
     }
 
@@ -131,40 +130,48 @@ public class Data {
         return userSetLTemp;
     }
 
-    public void setUserSetLower(Double userSetLower) {
+    public void setUserSetLower(double userSetLower) {
         this.userSetLTemp = userSetLower;
     }
 
 
     public double getCurrUpperTemp() {
         return upperBodyTemp;
-    }   
-    
+    }
+
     public boolean isUpperStatus() {
-		return upperControllerStatus;
-	}
+        return upperControllerStatus;
+    }
 
-	public void setUpperStatus(boolean upperStatus) {
-		this.upperControllerStatus = upperStatus;
-	}
+    public void setUpperStatus(boolean upperStatus) {
+        this.upperControllerStatus = upperStatus;
+    }
 
-	public boolean isLowerStatus() {
-		return lowerControllerStatus;
-	}
+    public boolean isLowerStatus() {
+        return lowerControllerStatus;
+    }
 
-	public void setLowerStatus(boolean lowerStatus) {
-		this.lowerControllerStatus = lowerStatus;
-	}
+    public void setLowerStatus(boolean lowerStatus) {
+        this.lowerControllerStatus = lowerStatus;
+    }
 
-	public double getUpperSensor1() {
-		return upperBodySensor1;
-	}
-	
-	public boolean isGraphStatus() {
-		return graphStatus;
-	}
+    public ArrayList<Double> getUpperSensor1() {
+        return upperBodySensor1List;
+    }
 
-	public void setGraphStatus(boolean graphStatus) {
-		this.graphStatus = graphStatus;
-	}
+    public boolean isGraphStatus() {
+        return graphStatus;
+    }
+
+    public void setGraphStatus(boolean graphStatus) {
+        this.graphStatus = graphStatus;
+    }
+
+    public double gettBR() {
+        return tBR;
+    }
+
+    public void settBR(double tBR) {
+        this.tBR = tBR;
+    }
 }
