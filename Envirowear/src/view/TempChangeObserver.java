@@ -50,7 +50,7 @@ public class TempChangeObserver {
 		this.status = s;
 	}
 	
-	public void changeStatus(boolean flag) {
+	public void changeStatus(int flag) {
 		status.flag = flag;
 		status.repaint();
 	}

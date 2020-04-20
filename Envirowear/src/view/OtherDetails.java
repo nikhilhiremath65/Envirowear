@@ -30,8 +30,8 @@ public class OtherDetails extends JPanel{
 	    JPanel upperPanel = new JPanel();
 	    upperPanel.setLayout(new GridLayout(3,1));
 	    JLabel upperBodyTitle = new LabelProperties("Upper Body Jacket Sensors");
-	    JPanel upperSensor1 = createPanelSensors("Sensor 1 : ", "00");
-	    JPanel upperSensor2 = createPanelSensors("Sensor 2 : ", "00");
+	    JPanel upperSensor1 = createPanelSensors("Sensor 1 : ", "17");
+	    JPanel upperSensor2 = createPanelSensors("Sensor 2 : ", "18");
 
 	    upperPanel.add(upperBodyTitle);
 	    upperPanel.add(upperSensor1);
@@ -40,8 +40,8 @@ public class OtherDetails extends JPanel{
 	    JPanel lowerPanel = new JPanel();
 	    lowerPanel.setLayout(new GridLayout(3,1));
 	    JLabel lowerBodyTitle = new LabelProperties("Lower Body Jacket Sensors");  
-	    JPanel lowerSensor1 = createPanelSensors("Sensor 1 : ", "00");
-	    JPanel lowerSensor2 = createPanelSensors("Sensor 2 : ", "00");
+	    JPanel lowerSensor1 = createPanelSensors("Sensor 1 : ", "27");
+	    JPanel lowerSensor2 = createPanelSensors("Sensor 2 : ", "28");
 
 	    lowerPanel.add(lowerBodyTitle);
 	    lowerPanel.add(lowerSensor1);

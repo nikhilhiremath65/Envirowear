@@ -37,12 +37,12 @@ public class Safety implements ISafetyInterface {
                     nullCount++;
                 }
                 else{
-                    data.setFLAG(3);
                     nullCount = 0;
                 }
             }
 
             else{
+            	data.setFLAG(3);
                 if(controllerType.equals("LOWER"))
                     data.setLowerStatus(false);
                 else if(controllerType.equals("UPPER"))

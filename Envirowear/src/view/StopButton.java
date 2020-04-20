@@ -33,6 +33,8 @@ public class StopButton extends JButton{
 				Data.getInstance().setUpperStatus(false);
 				Data.getInstance().setLowerStatus(false);
 				Data.getInstance().setGraphStatus(false);
+				Data.getInstance().reset();
+				
 			}
 		});
 	}

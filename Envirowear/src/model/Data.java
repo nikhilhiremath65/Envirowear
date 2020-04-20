@@ -185,5 +185,14 @@ public class Data {
 
     public void setFLAG(int FLAG) {
         this.FLAG = FLAG;
+        System.out.println("flaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaag ---- " + FLAG);
+        TempChangeObserver.getInstance().changeStatus(FLAG);
+    }
+    
+    public void reset () {
+    	this.FLAG = 0;
+
+        upperBodyTempList.clear();
+        lowerBodyTempList.clear();
     }
 }

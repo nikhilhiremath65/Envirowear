@@ -38,12 +38,12 @@ public class OtherSafetyChecks {
                 data.setFLAG(2);
             }
             else {
-                data.setFLAG(3);
                 limitCount=0;
 
             }
         }
         else{
+        	data.setFLAG(3);
             if(controllerType.equals("LOWER"))
                 data.setLowerStatus(false);
             else if(controllerType.equals("UPPER"))

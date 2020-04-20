@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
 public class statusButton extends JButton{
-	public boolean flag = true;
+	public int flag = 0;
 	
 	public statusButton() {
 		// TODO Auto-generated constructor stub
@@ -20,8 +20,14 @@ public class statusButton extends JButton{
 	}
 	
 	protected void paintComponent(Graphics g) {
-        if (flag) {
+        if (flag == 0) {
             g.setColor(Color.decode("#4DBF26"));
+        } 
+        else if (flag == 1) {
+            g.setColor(Color.YELLOW);
+        }
+        else if (flag == 2) {
+            g.setColor(Color.YELLOW);
         } 
         else {
             g.setColor(Color.RED);
