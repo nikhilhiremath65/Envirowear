@@ -19,6 +19,7 @@ public class TextBoxProperties extends JTextField implements Observer{
 		this.value = value;
 		this.setAlignmentX(CENTER_ALIGNMENT);
 		this.setMaximumSize(new Dimension(100, 30));
+		this.setPreferredSize(new Dimension(75,30));
 	}
 
 	@Override

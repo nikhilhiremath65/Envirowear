@@ -2,7 +2,6 @@ package components;
 
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import interfaces.IActuatorController;
@@ -12,6 +11,7 @@ import model.Data;
 import model.Simulator;
 
 public class StartController {
+
     ArrayList ls1,ls2,us1,us2;
 
     int upperFalseRound = 0;

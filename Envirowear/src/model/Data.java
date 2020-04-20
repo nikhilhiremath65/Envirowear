@@ -8,6 +8,7 @@ public class Data {
     private static Data dataObj;
 
 
+    private int FLAG;
     private double tBR;
     private double envTemp;
 
@@ -39,12 +40,15 @@ public class Data {
         this.graphStatus = false;
         this.envTemp = 20;
 
+        this.FLAG = 0;
+
         this.upperControllerStatus = false;
         this.lowerControllerStatus = false;
 
         this.upperBodyTempList = new ArrayList<Double>();
         this.lowerBodyTempList = new ArrayList<Double>();
     }
+
 
     public static Data getInstance() {
         if (dataObj == null) {
@@ -173,5 +177,13 @@ public class Data {
 
     public void settBR(double tBR) {
         this.tBR = tBR;
+    }
+
+    public int getFLAG() {
+        return FLAG;
+    }
+
+    public void setFLAG(int FLAG) {
+        this.FLAG = FLAG;
     }
 }

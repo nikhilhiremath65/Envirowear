@@ -2,9 +2,11 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -31,13 +33,28 @@ public class InputPanel extends JPanel{
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
 		JLabel title = new LabelProperties("    User Inputs");	
-		JLabel upperTempLabel = new LabelProperties("    Input Upper Body Temperature : ");
-		JLabel lowerTempLabel = new LabelProperties("    Input Lower Body Temperature : ");
+		JLabel upperTempLabel = new LabelProperties("    Input Upper Body Jacket Temperature : ");
+		JLabel lowerTempLabel = new LabelProperties("    Input Lower Body Jacket Temperature : ");
 		
+		JPanel upperTempInPanel = new JPanel();
+		upperTempInPanel.setLayout(new FlowLayout());
+		upperTempInPanel.setMaximumSize(new Dimension(200,50));
 		JTextField upperTempInput = new TextBoxProperties("24");
-		JTextField lowerTempInput = new TextBoxProperties("24");
+		JLabel degF1 = new JLabel("degF");
+		upperTempInPanel.add(upperTempInput);
+		upperTempInPanel.add(degF1);
 		
-		StartButton startButton = new StartButton(upperTempInput, lowerTempInput);
+		JPanel lowerTempInPanel = new JPanel();
+		lowerTempInPanel.setLayout(new FlowLayout());
+		lowerTempInPanel.setMaximumSize(new Dimension(200,50));
+		JTextField lowerTempInput = new TextBoxProperties("24");
+		JLabel degF2 = new JLabel("degF");
+		lowerTempInPanel.add(lowerTempInput);
+		lowerTempInPanel.add(degF2);
+		
+		OtherDetails otherDetails = new OtherDetails();
+		
+		StartButton startButton = new StartButton(upperTempInput, lowerTempInput, otherDetails.getSimulationValues());
 		StopButton stopButton = new StopButton();
 		
 		//Adding buttons in JPanel to make sure they are in same line.
@@ -50,19 +67,15 @@ public class InputPanel extends JPanel{
 		buttons.add(startButton);
 		buttons.add(stopButton);
 		
-		JPanel otherDetails = new OtherDetails();
-		JButton otherDetailsButton = new OtherDetailsButton(otherDetails);
-		
 		this.add(title);
 		this.add(upperTempLabel);
-		this.add(upperTempInput);
+		this.add(upperTempInPanel);
 		this.add(lowerTempLabel);
-		this.add(lowerTempInput);
+		this.add(lowerTempInPanel);
 		this.add(Box.createVerticalStrut(20)); /*creating space between buttons and Enter lower body 
 											   temperature input text box.*/
 		this.add(buttons);
 		this.add(Box.createVerticalStrut(20)); /*creating space between buttons and other details button*/
-		this.add(otherDetailsButton);
 		this.add(otherDetails);
 		
 		this.setVisible(true);

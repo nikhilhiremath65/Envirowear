@@ -1,6 +1,8 @@
 package view;
 
 import java.util.ArrayList;
+
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import model.Data;
@@ -15,8 +17,10 @@ import model.Data;
 public class TempChangeObserver {
 	
 	private static TempChangeObserver dataObj;
-	ArrayList<JTextField> observers;
+	ArrayList<JLabel> observers;
 	GraphPanel graph;
+	statusButton status;
+	JLabel error;
 	
 	private TempChangeObserver() {
 		observers = new ArrayList();
@@ -30,17 +34,36 @@ public class TempChangeObserver {
         return dataObj;
     }
 	
-	public void addObserver(JTextField obj) {
+	public void addObserver(JLabel obj) {
 		observers.add(obj);
 	}
 	
 	public void notifyObserver(int index, String value) {
-		observers.get(index).setText(value);
+		observers.get(index).setText(value.substring(0,5));
 	}
 	
 	public void addGraph(GraphPanel graph) {
 		this.graph = graph;
 	}
+	
+	public void addStatusObserver(statusButton s) {
+		this.status = s;
+	}
+	
+	public void changeStatus(boolean flag) {
+		status.flag = flag;
+		status.repaint();
+	}
+	
+	public void addErrorLabel(JLabel e) {
+		this.error = e;
+	}
+	
+	public void changeErrorLabel(String error) {
+		this.error.setText(error);;
+	}
+	
+	
 	
 	public void notifyGraphs(ArrayList<Double> values,boolean part) {
 		if(part) {

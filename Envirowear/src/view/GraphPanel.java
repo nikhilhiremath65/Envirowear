@@ -76,8 +76,8 @@ public class GraphPanel extends JPanel {
         else
         	xPoints = lowerTempList.size() - 1;
         
-        drawYAxis(g2,yPoints);
-        drawXAxis(g2,xPoints,((int) ((xPoints / 5.0)) + 1));
+        drawYaxis(g2,yPoints);
+        drawXaxis(g2,xPoints,((int) ((xPoints / 5.0)) + 1));
         
         drawLine(g2,upperGraphPoints,upperTempColor);
         drawLine(g2,lowerGraphPoints,lowerTempColor);
@@ -96,7 +96,7 @@ public class GraphPanel extends JPanel {
         }
     }
     
-    private void drawXAxis(Graphics2D g2, int points, int p) {
+    private void drawXaxis(Graphics2D g2, int points, int p) {
     	
     	for (int i = 0; i < points; i++) {
             if (points > 1) {
@@ -120,7 +120,7 @@ public class GraphPanel extends JPanel {
         }
     }
     
-    private void drawYAxis(Graphics2D g2, int points) {
+    private void drawYaxis(Graphics2D g2, int points) {
     	
     	for (int i = 0; i < points + 1; i++) {
             int x0 = padding + labelPadding;

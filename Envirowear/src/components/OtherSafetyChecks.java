@@ -29,13 +29,16 @@ public class OtherSafetyChecks {
         if(limitCount <= timeLimit){
             if(sensorTemp > upperTempLimit){
                 sensorTemp = upperTempLimit;
+                data.setFLAG(2);
                 limitCount++;
             }
             else if(sensorTemp < lowerTempLimit){
                 sensorTemp = lowerTempLimit;
                 limitCount++;
+                data.setFLAG(2);
             }
             else {
+                data.setFLAG(3);
                 limitCount=0;
 
             }

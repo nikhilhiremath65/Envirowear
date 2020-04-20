@@ -31,11 +31,13 @@ public class Safety implements ISafetyInterface {
         	Data data = Data.getInstance();
             userSetInput = data.getUserSetUpper();
             if(nullCount < timeLimit){
-                if(sensorTemp == 0){
+                if(sensorTemp == -999){
                     sensorTemp = userSetInput;
+                    data.setFLAG(1);
                     nullCount++;
                 }
                 else{
+                    data.setFLAG(3);
                     nullCount = 0;
                 }
             }

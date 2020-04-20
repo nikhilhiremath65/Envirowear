@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 public class Gui extends JFrame{
 	public Gui(){
 		
-		Dimension screenSize = new Dimension(800,600);
+		Dimension screenSize = new Dimension(800,800);
 		
 		this.setTitle("Enviro Wear");
 		this.setMinimumSize(screenSize);
