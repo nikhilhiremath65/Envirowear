@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Envirowear_Team_13.iml" filepath="$PROJECT_DIR$/Envirowear_Team_13.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/EnviroWear2.iml" filepath="$PROJECT_DIR$/.idea/EnviroWear2.iml" />
     </modules>
   </component>
 </project>
