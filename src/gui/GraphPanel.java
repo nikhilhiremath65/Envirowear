@@ -1,4 +1,5 @@
 package gui;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,6 +14,12 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import data.Constants;
+
+/**
+ *  
+ * @author somesh
+ * @since 04-08-2020
+ */
 
 public class GraphPanel extends JPanel {
 	

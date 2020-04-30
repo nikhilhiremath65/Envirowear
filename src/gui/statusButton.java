@@ -11,7 +11,7 @@ public class statusButton extends JButton{
 	public int flag = -1;
 	
 	public statusButton() {
-		// TODO Auto-generated constructor stub
+		
 		this.setLayout(null);
 		this.setBorder(new EmptyBorder(0, 0, 5, 5));
 		this.setPreferredSize(new Dimension(20,20));

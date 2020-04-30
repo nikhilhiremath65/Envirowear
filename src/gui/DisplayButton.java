@@ -8,9 +8,11 @@ import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
 public class DisplayButton extends JButton{
+	
 	private String part;
+	
 	public DisplayButton(String part) {
-		// TODO Auto-generated constructor stub
+		
 		this.setLayout(null);
 		this.setBorder(new EmptyBorder(0, 0, 5, 5));
 		this.setPreferredSize(new Dimension(20,20));
