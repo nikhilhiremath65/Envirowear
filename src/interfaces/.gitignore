@@ -1,3 +1,7 @@
 /IActuatorController.class
 /IController.class
 /ISafetyInterface.class
+/IOtherSafetyChecks.class
+/ISafety.class
+/ISensor.class
+/ISimulator.class

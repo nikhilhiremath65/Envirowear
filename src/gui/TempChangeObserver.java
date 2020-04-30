@@ -25,7 +25,6 @@ public class TempChangeObserver {
 		observers = new ArrayList();
 		actuatorList = new ArrayList();
 		actuatorListText = new ArrayList();
-		//graph = new GraphPanel();
 	}
 	
 	public static TempChangeObserver getInstance() {

@@ -28,17 +28,12 @@ public class OutputPanel extends JPanel {
 		
 		Data observable = Data.getInstance();
 		
-		//JLabel title = new LabelProperties("    Output");
 		JLabel upperTempLabel = new LabelProperties("Upper Body Jacket Temperature : ");
 		JLabel lowerTempLabel = new LabelProperties("Lower Body Jacket Temperature : ");
 		JLabel statusTempLabel = new LabelProperties("status : ");
 		statusTempLabel.setFont(new Font("Verdana", Font.PLAIN, 20));
 		JLabel upperBodyStatusLabel = new LabelProperties("Actuator : ");
-		//upperBodyStatusLabel.setFont(new Font("Verdana", Font.PLAIN, 10));
-		JLabel BodyTempLabel = new LabelProperties("Body Temperature : ");
-		
 		JLabel lowerBodyStatusLabel = new LabelProperties("Actuator : ");
-		//lowerBodyStatusLabel.setFont(new Font("Verdana", Font.PLAIN, 10));
 		
 		JLabel degF1 = new JLabel("degF");
 		degF1.setFont(new Font("Verdana", Font.PLAIN, 20));
@@ -75,21 +70,13 @@ public class OutputPanel extends JPanel {
 		TempChangeObserver.getInstance().addActuatorObserver(upperBodyStatus);
 		TempChangeObserver.getInstance().addActuatorObserverText(upperBodyStatusLabel);
 		JPanel upperBodyStatusPanel = createPanelTemp(upperBodyStatusLabel, upperBodyStatus, new JLabel());
-		//upperBodyStatusPanel.setAlignmentX(RIGHT_ALIGNMENT);
 		upperBodyStatusPanel.setMaximumSize(new Dimension(200,30));
 		
 		ActuatorButton lowerBodyStatus = new ActuatorButton();
 		TempChangeObserver.getInstance().addActuatorObserver(lowerBodyStatus);
 		TempChangeObserver.getInstance().addActuatorObserverText(lowerBodyStatusLabel);
 		JPanel lowerBodyStatusPanel = createPanelTemp(lowerBodyStatusLabel, lowerBodyStatus, new JLabel());
-		//lowerBodyStatusPanel.setAlignmentX(RIGHT_ALIGNMENT);
 		lowerBodyStatusPanel.setMaximumSize(new Dimension(200,30));
-		
-		
-		JLabel BodyTempOutput = new JLabel("00");
-		BodyTempOutput.setFont(new Font("Verdana", Font.PLAIN, 30));
-		JPanel BodyTemp = createPanelTemp(BodyTempLabel, BodyTempOutput, degF3);
-		TempChangeObserver.getInstance().addObserver(BodyTempOutput);
 		
 		GraphPanel graphPanel = new GraphPanel();
 		TempChangeObserver.getInstance().addGraph(graphPanel);
@@ -98,14 +85,11 @@ public class OutputPanel extends JPanel {
 		JPanel lowerLineDescription = createPanelTemp(new JLabel("Lower Jacket Temperature"), new DisplayButton("Lower"), new JLabel());
 		
 		
-		//this.add(title);
-		//this.add(upperTempLabel);
 		this.add(statusPanel);
 		this.add(upperBodyDisplay);
 		this.add(upperBodyStatusPanel);
 		this.add(lowerBodyDisplay);
 		this.add(lowerBodyStatusPanel);
-		this.add(BodyTemp);
 		this.add(graphPanel);
 		this.add(upperLineDescription);
 		this.add(lowerLineDescription);

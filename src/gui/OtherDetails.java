@@ -1,4 +1,5 @@
 package gui;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -8,6 +9,12 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+/**
+ *  
+ * @author somesh
+ * @since 04-08-2020
+ */
 
 public class OtherDetails extends JPanel{
 	private ArrayList<ArrayList<JTextField>> simulationValues; 

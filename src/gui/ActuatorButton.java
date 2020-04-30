@@ -7,11 +7,17 @@ import java.awt.Graphics;
 import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
+/**
+ *  
+ * @author somesh
+ * @since 04-08-2020
+ */
+
 public class ActuatorButton extends JButton{
 	private String flag = "NONE";
 
 	public ActuatorButton() {
-		// TODO Auto-generated constructor stub
+		
 		this.setLayout(null);
 		this.setBorder(new EmptyBorder(0, 0, 5, 5));
 		this.setPreferredSize(new Dimension(20,20));
