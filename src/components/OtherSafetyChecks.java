@@ -1,9 +1,10 @@
 package components;
 
-import model.Constants;
-import model.Data;
+import interfaces.IOtherSafetyChecks;
+import data.Constants;
+import data.Data;
 
-public class OtherSafetyChecks {
+public class OtherSafetyChecks implements IOtherSafetyChecks {
 
 
     private int limitCount;
@@ -17,9 +18,9 @@ public class OtherSafetyChecks {
         this.controllerType = controllerType;
     }
 
-    public double getAverage(double senosrTemp1, double sensorTemp2)throws Exception{
+    public double getAverage(double sensorTemp1, double sensorTemp2)throws Exception{
 
-        return (senosrTemp1+sensorTemp2)/2;
+        return (sensorTemp1+sensorTemp2)/2;
 
     }
     public double checkAverageTempLimit(double sensorTemp)throws Exception{

@@ -1,12 +1,14 @@
 package interfaces;
 
+import java.util.Map;
+
 public interface IController {
 
-    double calcSensorAverage() throws Exception;
+    double calcSensorAverage(double temp1, double temp2) throws Exception;
 
-    void setSensorTemp(double v, double v1);
+    Map<Integer,Double> sensorSafetyCheck(double temp1,double temp2,double userSetInput) throws Exception;
 
-    void sensorSafetyCheck() throws Exception;
+    double otherSafetyChecks(double sensorAverage,double userSetInput) throws Exception;
 
-    double otherSafetyChecks(double lowerSensorAverage) throws Exception;
+    String getAction(double userSetInput,double sensorAvg,double envTemp,boolean power) throws Exception;
 }

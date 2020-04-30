@@ -1,25 +1,28 @@
 package components;
 
 import interfaces.IActuatorController;
-import model.Data;
+import data.Constants;
+import data.Data;
 
 public class ActuatorController implements IActuatorController {
 
 double range = 0;
+String type;
 
+    public ActuatorController(String type) {
+        this.type = type;
+    }
 
-    public String actuatorAction (double userSetTemp, double sensorAverage, String actuatorType, double tempEnv,boolean power) throws Exception{
+    public String actuatorAction (double userSetTemp, double sensorAverage, double tempEnv, boolean power) throws Exception{
         String action = "NONE";
 
         if(power)
-            range = 0.25;
+            range = Constants.OFF_RANGE;
         else
-            range = 2;
+            range = Constants.ON_RANGE;
             if (sensorAverage > (userSetTemp + range)){
                 action = "COOL";
-                System.out.println(action);
-                if (actuatorType.equals("UPPER")) {
-                    System.out.println("upper:"+action);
+                if (type.equals("UPPER")) {
                     Data.getInstance().setUpperStatus(true);
                 } else {
                     System.out.println("lower:"+action);
@@ -30,17 +33,14 @@ double range = 0;
             } else if (sensorAverage < (userSetTemp - range)) {
                 action = "HEAT";
 
-                if (actuatorType.equals("UPPER")) {
-                    System.out.println("upper:"+action);
-
+                if (type.equals("UPPER")) {
                     Data.getInstance().setUpperStatus(true);
                 } else {
-                    System.out.println("lower:"+action);
                     Data.getInstance().setLowerStatus(true);
                 }
 
             } else if (sensorAverage <= (userSetTemp + range) && sensorAverage >= (userSetTemp - range)) {
-                if (actuatorType.equals("UPPER")) {
+                if (type.equals("UPPER")) {
                     Data.getInstance().setUpperStatus(false);
                 } else {
                     Data.getInstance().setLowerStatus(false);

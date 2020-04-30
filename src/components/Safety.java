@@ -1,15 +1,14 @@
 package components;
 
-import interfaces.ISafetyInterface;
-import model.Constants;
-import model.Data;
+import interfaces.ISafety;
+import data.Constants;
+import data.Data;
 
-public class Safety implements ISafetyInterface {
+public class Safety implements ISafety {
 	
 	private int nullCount;
 
 	private double timeLimit= Constants.TIMEOUT;
-	private double userSetInput;
     private double upperTempLimit= Constants.UPPER_TEMP_LIMIT;
     private double lowerTempLimit= Constants.LOWER_TEMP_LIMIT;
     private String controllerType;
@@ -19,18 +18,15 @@ public class Safety implements ISafetyInterface {
         this.controllerType = controllerType;
     }
 
-    public boolean checkUserSetTemp() throws Exception{
-    	
-    		Data data = Data.getInstance();
-            userSetInput = data.getUserSetLower();
+    public boolean checkUserSetTemp(double userSetInput) throws Exception{
+
 
             return lowerTempLimit <= userSetInput && userSetInput <= upperTempLimit;
     }
 
-    public double checkSensorNullTemp(double sensorTemp) throws Exception{
+    public double checkSensorNullTemp(double sensorTemp,double userSetInput) throws Exception{
 
         	Data data = Data.getInstance();
-            userSetInput = data.getUserSetUpper();
             if(nullCount < timeLimit){
                 if(sensorTemp == -999){
                     sensorTemp = userSetInput;
