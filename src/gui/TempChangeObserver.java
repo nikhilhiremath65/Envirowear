@@ -3,6 +3,9 @@ package gui;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import data.Data;
 
 
 /**
@@ -56,8 +59,18 @@ public class TempChangeObserver {
 	}
 	
 	public void changeStatus(int flag) {
-		status.flag = flag;
-		status.repaint();
+		Data data = Data.getInstance();
+		if(flag == 3 && data.isInitialize()) {
+			data.setInitialize(false);
+			status.flag = flag;
+			status.repaint();
+			String message = "Sensor failure!!! System Shutdown.";
+			JOptionPane.showMessageDialog(status.getParent().getParent().getParent(), message);
+		}
+		else{
+			status.flag = flag;
+			status.repaint();
+		}
 	}
 	
 	public void addErrorLabel(JLabel e) {
