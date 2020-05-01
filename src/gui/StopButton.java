@@ -24,6 +24,7 @@ public class StopButton extends JButton{
 		this.setBorder(new EmptyBorder(0, 0, 5, 5));
 		this.setMaximumSize(new Dimension(75,75));
 		this.setAlignmentX(CENTER_ALIGNMENT);
+		this.setBackground(Color.RED);
 		
 		this.addActionListener(new ActionListener() {
 			
@@ -42,15 +43,4 @@ public class StopButton extends JButton{
 			}
 		});
 	}
-	
-	protected void paintComponent(Graphics g) {
-        if (getModel().isArmed()) {
-            g.setColor(Color.lightGray);
-        } 
-        else {
-            g.setColor(Color.decode("#E35369"));
-        }
-        g.fillRect(0, 0, getSize().width, getSize().height);
-        super.paintComponent(g);
-    }
 }

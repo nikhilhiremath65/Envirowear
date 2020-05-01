@@ -17,14 +17,16 @@ public class statusButton extends JButton{
 		this.setPreferredSize(new Dimension(20,20));
 		this.setMaximumSize(new Dimension(100,100));
 		this.setAlignmentX(CENTER_ALIGNMENT);
+		this.setEnabled(false);
 	}
 	
 	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		if(flag == -1) {
 			g.setColor(Color.lightGray);
 		}
 		else if (flag == 0) {
-            g.setColor(Color.decode("#4DBF26"));
+            g.setColor(Color.GREEN);
         } 
         else if (flag == 1) {
             g.setColor(Color.YELLOW);
@@ -36,11 +38,12 @@ public class statusButton extends JButton{
             g.setColor(Color.RED);
         }
         g.fillOval(2, 2, getSize().width-4, getSize().height-4);
-        super.paintComponent(g);
+     
     }
 	
 	protected void paintBorder(Graphics g) {
-		g.setColor(Color.BLACK);
+		
+		g.setColor(Color.LIGHT_GRAY);
 		g.drawRect(0, 0, getSize().width, getSize().height);
 	}
 }

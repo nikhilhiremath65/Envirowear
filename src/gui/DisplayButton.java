@@ -18,22 +18,25 @@ public class DisplayButton extends JButton{
 		this.setPreferredSize(new Dimension(20,20));
 		this.setMaximumSize(new Dimension(100,100));
 		this.setAlignmentX(CENTER_ALIGNMENT);
+		this.setEnabled(false);
 		
 		this.part = part;
 	}
 	
-	protected void paintComponent(Graphics g) {
+
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		if(part == "UPPER")
 			g.setColor(new Color(114, 147, 203, 180));
 		else
 			g.setColor(new Color(62, 150, 81, 180));
    
         g.fillOval(2, 2, getSize().width-4, getSize().height-4);
-        super.paintComponent(g);
     }
 	
 	protected void paintBorder(Graphics g) {
-		g.setColor(Color.BLACK);
+		g.setColor(Color.lightGray);
 		g.drawRect(0, 0, getSize().width, getSize().height);
 	}
 }
