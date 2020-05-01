@@ -18,18 +18,18 @@ public class Safety implements ISafety {
         this.controllerType = controllerType;
     }
 
-    public boolean checkUserSetTemp(double userSetInput) throws Exception{
+    public boolean checkUserSetTemp(double userSetInput){
 
 
             return lowerTempLimit <= userSetInput && userSetInput <= upperTempLimit;
     }
 
-    public double checkSensorNullTemp(double sensorTemp,double userSetInput) throws Exception{
+    public double checkSensorNullTemp(double sensorTemp,double defaultTemp){
 
         	Data data = Data.getInstance();
             if(nullCount < timeLimit){
                 if(sensorTemp == -999){
-                    sensorTemp = userSetInput;
+                    sensorTemp = defaultTemp;
                     data.setStatusFlag(1);
                     nullCount++;
                 }

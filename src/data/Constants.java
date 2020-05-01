@@ -2,7 +2,7 @@ package data;
 
 public class Constants {
 
-    public static final int TIMEOUT=100;
+    public static final int TIMEOUT=10;
 
     public static final double OFF_RANGE = 0.25;
     public static final double ON_RANGE = 2;

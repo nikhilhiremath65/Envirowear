@@ -47,10 +47,12 @@ public  class  Controller implements IController {
     }
 
     @Override
-    public Map<Integer,Double> sensorSafetyCheck(double sensorTemp1,double sensorTemp2,double userSetInput) throws Exception {
+    public Map<Integer,Double> sensorSafetyCheck(double sensorTemp1,double sensorTemp2,double envTemp,double userSetInput) throws Exception {
         Map<Integer,Double> map = new HashMap<>();
         map.put(1,safety.checkSensorNullTemp(sensorTemp1,userSetInput));
         map.put(2,safety.checkSensorNullTemp(sensorTemp2,userSetInput));
+        map.put(3,safety.checkSensorNullTemp(envTemp,77));
+
         return map;
     }
 

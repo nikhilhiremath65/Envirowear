@@ -68,9 +68,10 @@ public class Envirowear {
                         upperBodySensor1.setTemp(upperOut);
                         upperBodySensor2.setTemp(upperOut);
                     }
-                    Map<Integer,Double> sensor =  upperBodyController.sensorSafetyCheck(upperBodySensor1.getTemp(),upperBodySensor2.getTemp(),data.getUserSetUpper());
+                    Map<Integer,Double> sensor =  upperBodyController.sensorSafetyCheck(upperBodySensor1.getTemp(),upperBodySensor2.getTemp(),data.getEnvTemp(),data.getUserSetUpper());
                     upperBodySensor1.setTemp(sensor.get(1));
                     upperBodySensor2.setTemp(sensor.get(2));
+                    data.setEnvTemp(sensor.get(3));
                     upperSensorAverage = upperBodyController.calcSensorAverage(upperBodySensor1.getTemp(),upperBodySensor2.getTemp());
 
                     if (upperSensorAverage != -1) {
@@ -108,9 +109,10 @@ public class Envirowear {
                         lowerBodySensor2.setTemp(lowerOut);
                     }
 
-                    Map<Integer,Double> sensor =  lowerBodyController.sensorSafetyCheck(lowerBodySensor1.getTemp(),lowerBodySensor2.getTemp(),data.getUserSetLower());
+                    Map<Integer,Double> sensor =  lowerBodyController.sensorSafetyCheck(lowerBodySensor1.getTemp(),lowerBodySensor2.getTemp(),data.getEnvTemp(),data.getUserSetLower());
                     lowerBodySensor1.setTemp(sensor.get(1));
                     lowerBodySensor2.setTemp(sensor.get(2));
+                    data.setEnvTemp(sensor.get(3));
                     lowerSensorAverage = lowerBodyController.calcSensorAverage(lowerBodySensor1.getTemp(),lowerBodySensor1.getTemp());
 
                     if (lowerSensorAverage != -1) {
@@ -144,6 +146,12 @@ public class Envirowear {
 
                 round++;
 
+            }
+            else{
+                us1.clear();
+                us2.clear();
+                ls1.clear();
+                ls2.clear();
             }
             }
         } catch (Exception e) {
