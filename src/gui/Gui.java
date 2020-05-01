@@ -16,7 +16,7 @@ public class Gui extends JFrame{
 		
 		Dimension screenSize = new Dimension(800,800);
 		
-		this.setTitle("Enviro Wear");
+		this.setTitle("Envirowear");
 		this.setMinimumSize(screenSize);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    

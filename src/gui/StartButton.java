@@ -2,7 +2,6 @@ package gui;
 import java.awt.Color;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -33,6 +32,7 @@ public class StartButton extends JButton{
 		this.setBorder(new EmptyBorder(0, 0, 5, 5));
 		this.setMaximumSize(new Dimension(75,75));
 		this.setAlignmentX(CENTER_ALIGNMENT);
+		this.setBackground(Color.GREEN);
 		
 		this.upperLimit = Constants.UPPER_TEMP_LIMIT;
 		this.lowerLimit = Constants.LOWER_TEMP_LIMIT;
@@ -121,14 +121,4 @@ public class StartButton extends JButton{
 		
 		
 	}
-	protected void paintComponent(Graphics g) {
-        if (getModel().isArmed()) {
-            g.setColor(Color.lightGray);
-        } 
-        else {
-            g.setColor(Color.decode("#4DBF26"));
-        }
-        g.fillRect(0, 0, getSize().width, getSize().height);
-        super.paintComponent(g);
-    }
 }
