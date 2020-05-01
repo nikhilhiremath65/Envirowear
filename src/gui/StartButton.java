@@ -57,6 +57,10 @@ public class StartButton extends JButton{
 						String message = "Please enter temperature between" + lowerLimit + " and " + upperLimit;
 						JOptionPane.showMessageDialog(getParent().getParent(), message);
 					}
+					else if(envTemp == -999) {
+						String message = "Envvironment Temperature sensor failure, shuting down system!!!";
+						JOptionPane.showMessageDialog(getParent().getParent(), message);
+					}
 					else if(envTemp < envLLimit || envTemp > envULimit) {
 						String message = "Please enter the environment temperature between" + 
 										envLLimit + " and " + envULimit;
@@ -109,7 +113,12 @@ public class StartButton extends JButton{
 							public void actionPerformed(ActionEvent e) {
 								// TODO Auto-generated method stub
 								double envTemp = Double.parseDouble(simulationDetails.get(4).get(0).getText());
-								if(envTemp < envLLimit || envTemp > envULimit) {
+								if(envTemp == -999) {
+									data.setInitialize(false);
+									String message = "Environment Temperature sensor failure, shuting down system!!!";
+									JOptionPane.showMessageDialog(getParent().getParent(), message);
+								}
+								else if(envTemp < envLLimit || envTemp > envULimit) {
 									String message = "Please enter the environment temperature between" + 
 													envLLimit + " and " + envULimit;
 									JOptionPane.showMessageDialog(getParent().getParent(), message);
