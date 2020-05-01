@@ -24,6 +24,8 @@ public class StartButton extends JButton{
 	
 	private double upperLimit = 0;
 	private double lowerLimit = 0;
+	private double envULimit = 0;
+	private double envLLimit = 0;
 	
 	public StartButton(JTextField upperBody, JTextField lowerBody, ArrayList<ArrayList<JTextField>> simulationDetails){
 		
@@ -32,10 +34,13 @@ public class StartButton extends JButton{
 		this.setBorder(new EmptyBorder(0, 0, 5, 5));
 		this.setMaximumSize(new Dimension(75,75));
 		this.setAlignmentX(CENTER_ALIGNMENT);
+		this.setOpaque(true);
 		this.setBackground(Color.GREEN);
 		
 		this.upperLimit = Constants.UPPER_TEMP_LIMIT;
 		this.lowerLimit = Constants.LOWER_TEMP_LIMIT;
+		this.envULimit = Constants.ENV_UPPER_TEMP_LIMIT;
+		this.envLLimit = Constants.ENV_LOWER_TEMP_LIMIT;
 		
 		this.addActionListener(new ActionListener() {
 			
@@ -45,10 +50,16 @@ public class StartButton extends JButton{
 					Data data = Data.getInstance();
 					Double upperTemp = Double.parseDouble(upperBody.getText().replace(" ", ""));
 					Double lowerTemp = Double.parseDouble(lowerBody.getText().replace(" ", ""));
+					double envTemp = Double.parseDouble(simulationDetails.get(4).get(0).getText());
 					
 					if (upperTemp < lowerLimit || upperTemp > upperLimit ||
 							lowerTemp < lowerLimit || lowerTemp > upperLimit) {
 						String message = "Please enter temperature between" + lowerLimit + " and " + upperLimit;
+						JOptionPane.showMessageDialog(getParent().getParent(), message);
+					}
+					else if(envTemp < envLLimit || envTemp > envULimit) {
+						String message = "Please enter the environment temperature between" + 
+										envLLimit + " and " + envULimit;
 						JOptionPane.showMessageDialog(getParent().getParent(), message);
 					}
 					else {
@@ -89,8 +100,7 @@ public class StartButton extends JButton{
 						data.setUpperSensor2(us2List);
 						data.setLowerSensor1(ls1List);
 						data.setLowerSensor2(ls2List);
-						double envTempC = Double.parseDouble(simulationDetails.get(4).get(0).getText());
-						data.setEnvTemp(envTempC);
+						data.setEnvTemp(envTemp);
 						data.settBR(Integer.parseInt(simulationDetails.get(5).get(0).getText()));
 						
 						simulationDetails.get(4).get(0).addActionListener(new ActionListener() {
@@ -98,7 +108,15 @@ public class StartButton extends JButton{
 							@Override
 							public void actionPerformed(ActionEvent e) {
 								// TODO Auto-generated method stub
-								data.setEnvTemp(Double.parseDouble(simulationDetails.get(4).get(0).getText()));
+								double envTemp = Double.parseDouble(simulationDetails.get(4).get(0).getText());
+								if(envTemp < envLLimit || envTemp > envULimit) {
+									String message = "Please enter the environment temperature between" + 
+													envLLimit + " and " + envULimit;
+									JOptionPane.showMessageDialog(getParent().getParent(), message);
+								}
+								else {
+									data.setEnvTemp(envTemp);
+								}
 							}
 						});
 						
