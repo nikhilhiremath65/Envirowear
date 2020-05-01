@@ -24,6 +24,7 @@ public class StopButton extends JButton{
 		this.setBorder(new EmptyBorder(0, 0, 5, 5));
 		this.setMaximumSize(new Dimension(75,75));
 		this.setAlignmentX(CENTER_ALIGNMENT);
+		this.setOpaque(true);
 		this.setBackground(Color.RED);
 		
 		this.addActionListener(new ActionListener() {
